@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
-	static PanelManager _instance;
+    static PanelManager _instance;
     public static PanelManager Instance 
     {
         get
@@ -22,37 +22,40 @@ public class PanelManager : MonoBehaviour
     public GameObject ParametersPanel;
 
     private void GoToLevels(){
-     	WelcomePanel.SetActive(false); // false to hide, true to show
-     	LevelsPanel.SetActive(true);
-     	ParametersPanel.SetActive(false);
+        WelcomePanel.SetActive(false); // false to hide, true to show
+        LevelsPanel.SetActive(true);
+        ParametersPanel.SetActive(false);
     }
     private void GoToWelcome(){
-     	LevelsPanel.SetActive(false); // false to hide, true to show
-     	ParametersPanel.SetActive(false);
-     	WelcomePanel.SetActive(true);
+        LevelsPanel.SetActive(false); // false to hide, true to show
+        ParametersPanel.SetActive(false);
+        WelcomePanel.SetActive(true);
     }
     private void GoToParameters(){
-     	LevelsPanel.SetActive(false); // false to hide, true to show
-     	ParametersPanel.SetActive(true);
-     	WelcomePanel.SetActive(false);
+        LevelsPanel.SetActive(false); // false to hide, true to show
+        ParametersPanel.SetActive(true);
+        WelcomePanel.SetActive(false);
     }
 
     public void OnReturnLevels(){
-    	GoToWelcome();
+        GoToWelcome();
     }
 
     public void OnPlayWelcome(){
-    	GoToLevels();
+        GoToLevels();
     }
     public void OnReturnParameters(){
-    	GoToWelcome();
+        GoToWelcome();
+    }
+    public void OnParametersWelcome(){
+        GoToParameters();
     }
     // Start is called before the first frame update
     void Start()
     {
-    	LevelsPanel.SetActive(false); // false to hide, true to show
-     	WelcomePanel.SetActive(true);
-     	ParametersPanel.SetActive(false);
+        LevelsPanel.SetActive(false); // false to hide, true to show
+        WelcomePanel.SetActive(true);
+        ParametersPanel.SetActive(false);
     }
 
     // Update is called once per frame

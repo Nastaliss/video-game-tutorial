@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class PanelManager : MonoBehaviour
     public GameObject LevelsPanel;
     public GameObject ParametersPanel;
 
+
+    //parameters menu
+    private Text SliderSoundPercentText;
+    private Slider SliderSound;
+
     private void GoToLevels(){
         WelcomePanel.SetActive(false); // false to hide, true to show
         LevelsPanel.SetActive(true);
@@ -35,12 +41,11 @@ public class PanelManager : MonoBehaviour
         LevelsPanel.SetActive(false); // false to hide, true to show
         ParametersPanel.SetActive(true);
         WelcomePanel.SetActive(false);
-    }
+    }   
 
     public void OnReturnLevels(){
         GoToWelcome();
     }
-
     public void OnPlayWelcome(){
         GoToLevels();
     }
@@ -49,7 +54,14 @@ public class PanelManager : MonoBehaviour
     }
     public void OnParametersWelcome(){
         GoToParameters();
+        SliderSoundPercentText = GameObject.Find("TextPercentSound").GetComponent<Text>();
+        SliderSound = GameObject.Find("SliderSound").GetComponent<Slider>();
+
     }
+    public void UpdateNumberTextPercentSound(){
+        SliderSoundPercentText.text=SliderSound.value.ToString()+"%";
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +73,7 @@ public class PanelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 }

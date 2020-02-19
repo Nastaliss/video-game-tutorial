@@ -60,7 +60,13 @@ public class PanelManager : MonoBehaviour
     }
     public void UpdateNumberTextPercentSound(){
         SliderSoundPercentText.text=SliderSound.value.ToString()+"%";
+        UpdateVolume();
     }
+
+    private void UpdateVolume(){
+        GameObject.Find("BackMusic").GetComponent<AudioSource>().volume=SliderSound.value/100;
+    }
+    
 
     // Start is called before the first frame update
     void Start()

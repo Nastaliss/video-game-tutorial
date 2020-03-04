@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Dls/Chain.lwo.meta
 guid: 194382d3404f66e448dec0d3aa2b6228
+=======
+guid: 37b25d46b2b981475a6d196e9030192e
+>>>>>>> develop:Assets/Scenes/MainScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

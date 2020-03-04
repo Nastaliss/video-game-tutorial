@@ -11,9 +11,12 @@ public class Movement : MonoBehaviour
     private float BaseVerticalPos;
     private Rigidbody rb;
 
-    public bool AllowMovement;
+    public bool AllowMovement = true;
+    public bool AllowCameraX = true;
+    public bool AllowCameraY = true;
     public float SensX = 5f;
     public float SensY = 2.2f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,20 +53,24 @@ public class Movement : MonoBehaviour
             }
         }
 
-        float inputX = Input.GetAxis("Mouse Y") * SensX ;
-        inputX = CameraRig.transform.localEulerAngles.x - inputX;
+        if (AllowCameraX) {
+            float inputX = Input.GetAxis("Mouse Y") * SensX ;
+            inputX = CameraRig.transform.localEulerAngles.x - inputX;
 
-        CameraRig.transform.localEulerAngles = new Vector3(inputX,0,0);
+            CameraRig.transform.localEulerAngles = new Vector3(inputX,0,0);
 
-        if (CameraRig.transform.localEulerAngles.x > 90f && CameraRig.transform.localEulerAngles.x < 180f) {
-            CameraRig.transform.localEulerAngles = new Vector3(90, 0, 0) ;
-        } else if (CameraRig.transform.localEulerAngles.x >= 180f && CameraRig.transform.localEulerAngles.x < 270f) {
-            CameraRig.transform.localEulerAngles =new Vector3(270, 0, 0);
+            if (CameraRig.transform.localEulerAngles.x > 90f && CameraRig.transform.localEulerAngles.x < 180f) {
+                CameraRig.transform.localEulerAngles = new Vector3(90, 0, 0) ;
+            } else if (CameraRig.transform.localEulerAngles.x >= 180f && CameraRig.transform.localEulerAngles.x < 270f) {
+                CameraRig.transform.localEulerAngles =new Vector3(270, 0, 0);
+            }
         }
 
-        float inputY = Input.GetAxis("Mouse X") * SensY ;
-        inputY = transform.localEulerAngles.y - inputY;
+        if (AllowCameraY) {
+            float inputY = Input.GetAxis("Mouse X") * SensY ;
+            inputY = transform.localEulerAngles.y - inputY;
 
-        transform.localEulerAngles = new Vector3(0,inputY,0);
+            transform.localEulerAngles = new Vector3(0,inputY,0);
+        }
     }
 }

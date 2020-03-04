@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
 
     public bool AllowMovement;
+    public float SensX = 5f;
+    public float SensY = 2.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,7 @@ public class Movement : MonoBehaviour
             }
         }
 
-        float inputX = Input.GetAxis("Mouse Y") * 5f ;
+        float inputX = Input.GetAxis("Mouse Y") * SensX ;
         inputX = CameraRig.transform.localEulerAngles.x - inputX;
 
         CameraRig.transform.localEulerAngles = new Vector3(inputX,0,0);
@@ -58,5 +60,10 @@ public class Movement : MonoBehaviour
         } else if (CameraRig.transform.localEulerAngles.x >= 180f && CameraRig.transform.localEulerAngles.x < 270f) {
             CameraRig.transform.localEulerAngles =new Vector3(270, 0, 0);
         }
+
+        float inputY = Input.GetAxis("Mouse X") * SensY ;
+        inputY = transform.localEulerAngles.y - inputY;
+
+        transform.localEulerAngles = new Vector3(0,inputY,0);
     }
 }

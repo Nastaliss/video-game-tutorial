@@ -6,33 +6,76 @@ public class DetectDamaged : MonoBehaviour
 {
     
     public LayerMask damagesMask;
+    public float viewRadius;
+
+    [Range(0, 360)]
+    public float viewAngle;
+
+    public GameObject dmg_test;
+
+    public List<Transform> visibleDmgs = new List<Transform>(); 
 
     Camera viewCamera;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("FindDamagesWithDelay", .2f);
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator FindDamagesWithDelay(float delay)
     {
-        //Vector3 mousePos = viewCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y))
+        while(true)
+        {
+            yield return new WaitForSeconds(delay);
+            FindVisibleDamages();
+        }
     }
+
 
     void FindVisibleDamages()
     {
-        Collider[] damagesInViewRadius = Physics.OverlapSphere(transform.position, 360, damagesMask);
+        Collider[] damagesInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, damagesMask);
 
         for (int i = 0; i < damagesInViewRadius.Length; i++)
         {
-            Transform damages = damagesInViewRadius[i].transform;
-            Vector3 dirToDamages = (damages.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToDamages) < 45)
+            //Renderer dmg_test_rend = dmg_test.GetComponent<Renderer>();
+            //dmg_test_rend.material.color = Color.red;
+
+            visibleDmgs.Clear();  
+
+            Transform damages_transf = damagesInViewRadius[i].transform;
+            Renderer damages_rend = damages_transf.GetComponent<Renderer>();
+
+            Vector3 dirToDamages = (damages_transf.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, dirToDamages) < viewAngle/2)
             {
-                GameObject Chain = damages.transform.parent.gameObject;
-                Chain.GetComponent<Renderer>.material.color = Color.red;
+                visibleDmgs.Add(damages_transf);
+                //Renderer damages_rend = damages.GetComponent<Renderer>();
+                Color tempColor = damages_rend.material.color;
+                tempColor.a = 0.42f;
+                damages_rend.material.color= tempColor;
+                //damages_rend.material.color = Color.red;
             }
+            else
+            {
+                Color tempColor = damages_rend.material.color;
+                tempColor.a = 0f;
+                damages_rend.material.color = tempColor;
+            }
+
         }
+    }
+
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y; 
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }

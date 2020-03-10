@@ -16,10 +16,6 @@ public class KeyBoardManager : MonoBehaviour
 
     void Start()
     {
-        IndicateKeyStart("use");
-        IndicateKeyStart("use");
-        IndicateKeyStart("use");
-        IndicateKeyStart("use");
     }
 
     void Update()

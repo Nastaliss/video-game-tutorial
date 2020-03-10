@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Debug.Log('a');
+        Debug.Log("a");
         BaseVerticalPos = transform.position.y;
     }
 

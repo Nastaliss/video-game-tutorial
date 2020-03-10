@@ -14,6 +14,9 @@ public class DetectDamaged : MonoBehaviour
     public GameObject dmg_test;
     public GameObject keyboardPanel;
     public GameObject mousePanel;
+    public GameObject chainOne;
+    public GameObject chainTwo;
+    public GameObject chainThree;
 
     public List<Transform> visibleDmgs = new List<Transform>(); 
 
@@ -51,6 +54,7 @@ public class DetectDamaged : MonoBehaviour
 
             Transform damages_transf = damagesInViewRadius[i].transform;
             Renderer damages_rend = damages_transf.GetComponent<Renderer>();
+            
 
             Vector3 dirToDamages = (damages_transf.position - transform.position).normalized;
 
@@ -66,7 +70,23 @@ public class DetectDamaged : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.E))
                 {
+                    GameObject chain = damages_transf.parent.gameObject;
+                    if (chain.CompareTag("ChainOne"))
+                    {
+                        chainOne.GetComponent<ChainFalling>().CallThisFromButton(chain);
+                    }
 
+                    if (chain.CompareTag("ChainTwo"))
+                    {
+                        Debug.Log("I AM IN THE IF CHAIN TWO");
+                        chainTwo.GetComponent<ChainFalling>().CallThisFromButton(chain);
+                    }
+
+                    if (chain.CompareTag("ChainThree"))
+                    {
+                        chainThree.GetComponent<ChainFalling>().CallThisFromButton(chain);
+                    }
+                    //chainOne.GetComponent<ChainFalling>().CallThisFromButton();
                     //KeyElement.OnKeyPressed();
                     //return;
                 }

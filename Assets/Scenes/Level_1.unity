@@ -1520,7 +1520,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107148330}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 51d67c1cfe080d849ae0a26a12d11cf8, type: 2}
   m_CullingMode: 0
@@ -1531,6 +1531,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &107148332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107148330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5eff3f1edba473439244f77576e0e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: fall_Chain2
 --- !u!4 &111136910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4338867686750646, guid: 8e2a80e35db1ddd4090f8cc5ca764511,
@@ -4275,6 +4288,7 @@ MonoBehaviour:
   dmg_test: {fileID: 1150244267}
   keyboardPanel: {fileID: 1851164351}
   mousePanel: {fileID: 1928326719}
+  chainOne: {fileID: 1458964938}
   visibleDmgs: []
 --- !u!4 &335402712 stripped
 Transform:
@@ -12616,6 +12630,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 92df7925efe9a0947a789958e1a10a96,
+        type: 3}
+      propertyPath: m_TagString
+      value: ChainOne
       objectReference: {fileID: 0}
     - target: {fileID: 2534866581884222612, guid: 92df7925efe9a0947a789958e1a10a96,
         type: 3}
@@ -21096,7 +21115,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458964938}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3aebd01de22451d45850a223a1f3c100, type: 2}
   m_CullingMode: 0
@@ -21107,6 +21126,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1458964940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458964938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5eff3f1edba473439244f77576e0e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: fall_Chain1
 --- !u!4 &1459960578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4338867686750646, guid: 8e2a80e35db1ddd4090f8cc5ca764511,
@@ -22719,7 +22751,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563575353}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 57ca3cf89416b4c4592a559a39fbb0e6, type: 2}
   m_CullingMode: 0
@@ -22730,6 +22762,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1563575355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563575353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5eff3f1edba473439244f77576e0e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: 
 --- !u!1001 &1564729143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25739,6 +25784,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 92df7925efe9a0947a789958e1a10a96,
+        type: 3}
+      propertyPath: m_TagString
+      value: ChainTwo
       objectReference: {fileID: 0}
     - target: {fileID: 2534866581884222612, guid: 92df7925efe9a0947a789958e1a10a96,
         type: 3}

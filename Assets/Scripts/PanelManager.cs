@@ -41,6 +41,10 @@ public class PanelManager : MonoBehaviour
         LevelsPanel.SetActive(false); // false to hide, true to show
         ParametersPanel.SetActive(true);
         WelcomePanel.SetActive(false);
+
+
+        // Animator a;
+        // a.SetTrigger("sitDown");
     }   
 
     public void OnReturnLevels(){
@@ -67,6 +71,13 @@ public class PanelManager : MonoBehaviour
         GameObject.Find("BackMusic").GetComponent<AudioSource>().volume=SliderSound.value/100;
     }
     
+    public void ButtonQuit(){
+        #if UNITY_EDITOR
+         UnityEditor.EditorApplication.isPlaying = false;
+     #else
+         Application.Quit();
+     #endif
+    }
 
     // Start is called before the first frame update
     void Start()

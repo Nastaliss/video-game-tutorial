@@ -16,7 +16,6 @@ public class KeyBoardManager : MonoBehaviour
 
     void Start()
     {
-        IndicateKeyStart("forward");
     }
 
     void Update()

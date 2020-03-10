@@ -66,7 +66,8 @@ public class DetectDamaged : MonoBehaviour
                 tempColor.a = 0.42f;
                 damages_rend.material.color= tempColor;
 
-                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKey("use");
+                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStart("use");
+                Debug.Log("test");
 
                 if (Input.GetKey(KeyCode.E))
                 {
@@ -96,6 +97,7 @@ public class DetectDamaged : MonoBehaviour
                 Color tempColor = damages_rend.material.color;
                 tempColor.a = 0f;
                 damages_rend.material.color = tempColor;
+                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStop("use");
             }
 
         }

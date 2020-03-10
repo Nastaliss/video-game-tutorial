@@ -1543,7 +1543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5eff3f1edba473439244f77576e0e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationName: fall_Chain2
 --- !u!4 &111136910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4338867686750646, guid: 8e2a80e35db1ddd4090f8cc5ca764511,
@@ -4289,6 +4288,8 @@ MonoBehaviour:
   keyboardPanel: {fileID: 1851164351}
   mousePanel: {fileID: 1928326719}
   chainOne: {fileID: 1458964938}
+  chainTwo: {fileID: 107148330}
+  chainThree: {fileID: 1563575353}
   visibleDmgs: []
 --- !u!4 &335402712 stripped
 Transform:
@@ -21138,7 +21139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5eff3f1edba473439244f77576e0e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationName: fall_Chain1
 --- !u!4 &1459960578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4338867686750646, guid: 8e2a80e35db1ddd4090f8cc5ca764511,
@@ -22774,7 +22774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5eff3f1edba473439244f77576e0e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationName: 
 --- !u!1001 &1564729143
 PrefabInstance:
   m_ObjectHideFlags: 0

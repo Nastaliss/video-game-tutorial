@@ -44,6 +44,7 @@ public class Key : MonoBehaviour
         if (BlinkCoroutine != null) {
             StopCoroutine(BlinkCoroutine);
             BlinkCoroutine = null;
+            ResetKey();
         }
     }
     private IEnumerator BlinkHighlight() {

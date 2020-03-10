@@ -6,23 +6,28 @@ using UnityEngine;
 public class MouseManager : MonoBehaviour
 {
     // Start is called before the first frame update
-
     public Image ArrowUp;
     public Image ArrowRight;
     public Image ArrowDown;
     public Image ArrowLeft;
 
+    public float DeadZoneX = 2f;
+    public float DeadZoneY = .5f;
+
     private float PreviousAngleY;
     private float PreviousAngleX;
 
-
+    private Coroutine UseUpCouroutine;
+    private Coroutine UseRightCouroutine;
+    private Coroutine UseDownCouroutine;
+    private Coroutine UseLeftCouroutine;
 
     void Start()
     {
-        HideArrow("up");
-        HideArrow("right");
-        HideArrow("down");
-        HideArrow("left");
+        // HideArrow("up");
+        // HideArrow("right");
+        // HideArrow("down");
+        // HideArrow("left");
     }
 
     // Update is called once per frame
@@ -47,11 +52,32 @@ public class MouseManager : MonoBehaviour
     }
 
     private void ShowArrowWhenCameraMoves() {
-        // if (Input.GetAxis("Mouse Y") > 0) {
-        //     UseArrow("up");
-        // } else if (Input.GetAxis("Mouse Y") < 0) {
+        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > DeadZoneY / 4) {
+            ResetArrowColor("up");
+            ResetArrowColor("down");
+            if (UseUpCouroutine != null) StopCoroutine(UseUpCouroutine);
+            if (UseDownCouroutine != null) StopCoroutine(UseDownCouroutine);
+        }
 
-        // }
+        if (Input.GetAxis("Mouse Y") > DeadZoneY / 4) {
+            UseUpCouroutine = UseArrow("up");
+        } else if (Input.GetAxis("Mouse Y") < - DeadZoneY / 4) {
+            UseDownCouroutine = UseArrow("down");
+        }
+
+        if (Mathf.Abs(Input.GetAxis("Mouse X")) > DeadZoneX) {
+            
+            ResetArrowColor("right");
+            ResetArrowColor("left");
+            if (UseRightCouroutine != null) StopCoroutine(UseRightCouroutine);
+            if (UseLeftCouroutine != null)  StopCoroutine(UseLeftCouroutine);
+        }
+
+        if (Input.GetAxis("Mouse X") > DeadZoneX) {
+            UseRightCouroutine = UseArrow("right");
+        } else if (Input.GetAxis("Mouse X") < - DeadZoneX) {
+            UseLeftCouroutine = UseArrow("left");
+        }
 
     }
 
@@ -63,12 +89,16 @@ public class MouseManager : MonoBehaviour
         GetArrow(ArrowDirection).enabled = false;
     }
 
+    public void ResetArrowColor(string ArrowDirection) {
+        GetArrow(ArrowDirection).color = new Color(0f, 0f, 0f);;
+    }
+
     public void IndicateArrow(string ArrowDirection) {
         StartCoroutine(IndicateCoroutine(GetArrow(ArrowDirection), 2f));
     }
 
-    public void UseArrow(string ArrowDirection) {
-        StartCoroutine(UseCoroutine(GetArrow(ArrowDirection), 2f));
+    public Coroutine UseArrow(string ArrowDirection) {
+        return StartCoroutine(ArrowUseCoroutine(GetArrow(ArrowDirection), 2f));
     }
 
     IEnumerator IndicateCoroutine(Image Arrow, float TimeSeconds) {
@@ -81,9 +111,9 @@ public class MouseManager : MonoBehaviour
         }
     }
 
-    IEnumerator UseCoroutine(Image Arrow, float TimeSeconds) {
+    IEnumerator ArrowUseCoroutine(Image Arrow, float TimeSeconds) {
         Arrow.color = new Color(0f, 1f, 0f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         Arrow.color = new Color(0f, 0f, 0f);
     }
 }

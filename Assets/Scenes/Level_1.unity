@@ -1402,6 +1402,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PeripheralsPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6510786214096753395, guid: 7772c89dc574381669f509e7dd3daa65,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 606.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7772c89dc574381669f509e7dd3daa65, type: 3}
 --- !u!1001 &103142176
@@ -4321,6 +4326,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb769f241f1fb78448a4d38931e1dbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonMask:
+    serializedVersion: 2
+    m_Bits: 0
+  viewRadius: 0
+  viewAngle: 0
+  keyboardPanel: {fileID: 0}
+  mousePanel: {fileID: 0}
+  buttonOne: {fileID: 0}
+  buttonTwo: {fileID: 0}
+  visibleButtons: []
 --- !u!4 &335402712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4535884098977908, guid: f95ea3f4f5c3378459f5f4c7110f5805,

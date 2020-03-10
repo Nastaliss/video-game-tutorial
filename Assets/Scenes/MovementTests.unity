@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 1870256948}
   - component: {fileID: 1870256949}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,6 +560,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraRig: {fileID: 1493551971}
+  AllowMovement: 1
+  AllowCameraX: 1
+  AllowCameraY: 1
+  SensX: 5
+  SensY: 2.2
 --- !u!1 &1907832113
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,16 +22,16 @@ public class Key : MonoBehaviour
     }
     // COLOR //
     private void ChangeColor(Color color) {
-        Debug.Log(color);
         KeyImageElement.color = color;
     }
     public void OnKeyPressed() {
-        Debug.Log("here");
         ChangeColor(ColorPressed);
     }
 
     public void OnKeyReleased() {
-        ChangeColor(ColorDefault);
+        if (KeyImageElement.color != ColorHighlighted) {
+            ChangeColor(ColorDefault);
+        }
     }
 
     public void OnKeyHighlight() {

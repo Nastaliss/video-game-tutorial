@@ -12,10 +12,13 @@ public class DetectDamaged : MonoBehaviour
     public float viewAngle;
 
     public GameObject dmg_test;
+    public GameObject keyboardPanel;
+    public GameObject mousePanel;
 
     public List<Transform> visibleDmgs = new List<Transform>(); 
 
     Camera viewCamera;
+
 
 
 
@@ -53,12 +56,20 @@ public class DetectDamaged : MonoBehaviour
 
             if (Vector3.Angle(transform.forward, dirToDamages) < viewAngle/2)
             {
-                visibleDmgs.Add(damages_transf);
-                //Renderer damages_rend = damages.GetComponent<Renderer>();
+                visibleDmgs.Add(damages_transf); 
+
                 Color tempColor = damages_rend.material.color;
                 tempColor.a = 0.42f;
                 damages_rend.material.color= tempColor;
-                //damages_rend.material.color = Color.red;
+
+                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKey("use");
+
+                if (Input.GetKey(KeyCode.E))
+                {
+
+                    //KeyElement.OnKeyPressed();
+                    //return;
+                }
             }
             else
             {

@@ -12,19 +12,23 @@ public class MouseManager : MonoBehaviour
     public Image ArrowDown;
     public Image ArrowLeft;
 
+    private float PreviousAngleY;
+    private float PreviousAngleX;
+
+
+
     void Start()
     {
-        // HideArrow("up");
+        HideArrow("up");
         HideArrow("right");
         HideArrow("down");
         HideArrow("left");
-        IndicateArrow("up");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        ShowArrowWhenCameraMoves();
     }
 
     private Image GetArrow(string ArrowIndicator) {
@@ -41,6 +45,16 @@ public class MouseManager : MonoBehaviour
         }
 
     }
+
+    private void ShowArrowWhenCameraMoves() {
+        // if (Input.GetAxis("Mouse Y") > 0) {
+        //     UseArrow("up");
+        // } else if (Input.GetAxis("Mouse Y") < 0) {
+
+        // }
+
+    }
+
     public void ShowArrow(string ArrowDirection) {
         GetArrow(ArrowDirection).enabled = true;
     }
@@ -50,13 +64,15 @@ public class MouseManager : MonoBehaviour
     }
 
     public void IndicateArrow(string ArrowDirection) {
-        StartCoroutine(Indicate(GetArrow(ArrowDirection), 2f));
+        StartCoroutine(IndicateCoroutine(GetArrow(ArrowDirection), 2f));
     }
 
-    IEnumerator Indicate(Image Arrow, float TimeSeconds) {
+    public void UseArrow(string ArrowDirection) {
+        StartCoroutine(UseCoroutine(GetArrow(ArrowDirection), 2f));
+    }
+
+    IEnumerator IndicateCoroutine(Image Arrow, float TimeSeconds) {
         var endTime=Time.time + TimeSeconds;
-        Debug.Log(Time.time);
-        Debug.Log(endTime);
         while(Time.time < endTime) {
             Arrow.color = new Color(1f, 0f, 0f);
             yield return new WaitForSeconds(0.2f);
@@ -65,4 +81,9 @@ public class MouseManager : MonoBehaviour
         }
     }
 
+    IEnumerator UseCoroutine(Image Arrow, float TimeSeconds) {
+        Arrow.color = new Color(0f, 1f, 0f);
+        yield return new WaitForSeconds(1f);
+        Arrow.color = new Color(0f, 0f, 0f);
+    }
 }

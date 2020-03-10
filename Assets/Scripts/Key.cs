@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Key : MonoBehaviour
 {
-
+    private Coroutine BlinkCoroutine;
     public Image KeyImageElement;
 
     public Text KeyTextElement;
@@ -30,8 +30,33 @@ public class Key : MonoBehaviour
 
     public void OnKeyReleased() {
         if (KeyImageElement.color != ColorHighlighted) {
-            ChangeColor(ColorDefault);
+            ResetKey();
         }
+    }
+
+    public void BlinkHighlightStart() {
+        if (BlinkCoroutine == null) {
+            BlinkCoroutine = StartCoroutine(BlinkHighlight());
+        }        
+    }
+
+    public void BlinkHighlightStop() {
+        if (BlinkCoroutine != null) {
+            StopCoroutine(BlinkCoroutine);
+        }
+    }
+    private IEnumerator BlinkHighlight() {
+        // var endTime=Time.time + 2f;
+        while(true) {
+            OnKeyHighlight();
+            yield return new WaitForSeconds(0.2f);
+            OnKeyDehighlight();
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    public void ResetKey() {
+        ChangeColor(ColorDefault);
     }
 
     public void OnKeyHighlight() {

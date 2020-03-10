@@ -16,7 +16,7 @@ public class KeyBoardManager : MonoBehaviour
 
     void Start()
     {
-        // IndicateKey("forward");
+        IndicateKeyStart("forward");
     }
 
     void Update()
@@ -65,18 +65,15 @@ public class KeyBoardManager : MonoBehaviour
         }
     }
 
-    public void IndicateKey(string ArrowDirection) {
-        StartCoroutine(Indicate(GetKey(ArrowDirection), 2f));
+    public void IndicateKeyStart(string KeyName) {
+        GetKey(KeyName).BlinkHighlightStart();
     }
 
-    IEnumerator Indicate(Key Key, float TimeSeconds) {
-        var endTime=Time.time + TimeSeconds;
-        while(Time.time < endTime) {
-            Key.OnKeyHighlight();
-            yield return new WaitForSeconds(0.2f);
-            Key.OnKeyDehighlight();
-            yield return new WaitForSeconds(0.2f);
-        }
+    public void IndicateKeyStop(string KeyName) {
+        GetKey(KeyName).BlinkHighlightStop();
     }
+
+
+    
 
 }

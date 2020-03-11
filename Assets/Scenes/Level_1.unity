@@ -1402,6 +1402,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PeripheralsPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6510786214096753395, guid: 7772c89dc574381669f509e7dd3daa65,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 606.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7772c89dc574381669f509e7dd3daa65, type: 3}
 --- !u!1001 &103142176

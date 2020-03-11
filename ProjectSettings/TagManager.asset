@@ -9,6 +9,7 @@ TagManager:
   - ChainThree
   - ButtonOne
   - ButtonTwo
+  - test_tag
   layers:
   - Default
   - TransparentFX

@@ -30,6 +30,8 @@ public class RightPosition : StateMachineBehaviour
          Transform test = animator.transform;
          Vector3 temp = new Vector3(-5.83f, -5.356681f, 45.635f);
          test.transform.position = temp;
+        Debug.Log(this);
+        //Debug.Log(test.transform.position);
          //animator.gameObject.transform.position = animator.transform.position;
     }
 

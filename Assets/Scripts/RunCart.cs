@@ -15,8 +15,10 @@ public class RunCart : MonoBehaviour
     public void RunningCart()
     {
         anim.SetTrigger("Activate");
-        
+
         //anim.SetTrigger("Desactivate");
+
+        //anim.ResetTrigger("Activate");
         //Destroy(button, anim.GetCurrentAnimatorStateInfo(0).length);
     }
 }

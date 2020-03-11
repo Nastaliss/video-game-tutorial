@@ -15,11 +15,12 @@ public class ButtonPushed : MonoBehaviour
 
     public void CallThisFromButton()
     {
-        Debug.Log("JE TRIGGER");
         anim.SetTrigger("Activate");
         
+
         playersCart.GetComponent<RunCart>().RunningCart();
         
+
         //anim.SetTrigger("Desactivate");
         //Destroy(button, anim.GetCurrentAnimatorStateInfo(0).length);
     }

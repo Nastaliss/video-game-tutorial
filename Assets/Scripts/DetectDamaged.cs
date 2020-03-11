@@ -4,104 +4,72 @@ using UnityEngine;
 
 public class DetectDamaged : MonoBehaviour
 {
-    
-    public LayerMask damagesMask;
     public float viewRadius;
 
     [Range(0, 360)]
     public float viewAngle;
 
-    public GameObject dmg_test;
     public GameObject keyboardPanel;
-    public GameObject mousePanel;
-    public GameObject chainOne;
-    public GameObject chainTwo;
-    public GameObject chainThree;
+    public MouseManager mousePanel;
 
+
+    public List<GameObject> chains;
+
+    private float VISIBILITY_THRESHOLD = .9f; 
     public List<Transform> visibleDmgs = new List<Transform>(); 
 
-    Camera viewCamera;
+    void Start() {
+        mousePanel.ShowArrow("left");
+        mousePanel.ShowArrow("right");
 
+        mousePanel.IndicateArrow("left");
+        mousePanel.IndicateArrow("right");
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine("FindDamagesWithDelay", .2f);
     }
 
-    IEnumerator FindDamagesWithDelay(float delay)
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(delay);
-            FindVisibleDamages();
+    void Update() {
+        // TODO: Break down in smaller functions
+        GameObject ChainSelected = null;
+        
+        foreach (GameObject Chain in chains) {
+
+            if (GetTargetGameObjectVisibility(Chain.transform.GetChild(1)) < - VISIBILITY_THRESHOLD) {
+                ChainSelected = Chain;
+                ShowChainDamageSphere(Chain);
+            } else {
+                HideChainDamageSphere(Chain);
+            }
+        }
+
+        // Update UI
+        if (ChainSelected != null) {
+            keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStart("use");
+        } else { 
+            keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStop("use");
+        }
+
+        // Break and delete chain
+        if ((Input.GetKey(KeyCode.E)) && (ChainSelected != null)) {
+            ChainSelected.GetComponent<ChainFalling>().CallThisFromButton(ChainSelected);
+            chains.Remove(ChainSelected);
+            if (chains.Count == 0) {
+                FreeYAxis();
+            }
         }
     }
 
-
-    void FindVisibleDamages()
-    {
-        Collider[] damagesInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, damagesMask);
-
-        for (int i = 0; i < damagesInViewRadius.Length; i++)
-        {
-            //Renderer dmg_test_rend = dmg_test.GetComponent<Renderer>();
-            //dmg_test_rend.material.color = Color.red;
-
-            visibleDmgs.Clear();  
-
-            Transform damages_transf = damagesInViewRadius[i].transform;
-            Renderer damages_rend = damages_transf.GetComponent<Renderer>();
-            
-
-            Vector3 dirToDamages = (damages_transf.position - transform.position).normalized;
-
-            if (Vector3.Angle(transform.forward, dirToDamages) < viewAngle/2)
-            {
-                visibleDmgs.Add(damages_transf); 
-
-                Color tempColor = damages_rend.material.color;
-                tempColor.a = 0.42f;
-                damages_rend.material.color= tempColor;
-
-                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStart("use");
-                Debug.Log("test");
-
-                if (Input.GetKey(KeyCode.E))
-                {
-                    GameObject chain = damages_transf.parent.gameObject;
-                    if (chain.CompareTag("ChainOne"))
-                    {
-                        chainOne.GetComponent<ChainFalling>().CallThisFromButton(chain);
-                    }
-
-                    if (chain.CompareTag("ChainTwo"))
-                    {
-                        Debug.Log("I AM IN THE IF CHAIN TWO");
-                        chainTwo.GetComponent<ChainFalling>().CallThisFromButton(chain);
-                    }
-
-                    if (chain.CompareTag("ChainThree"))
-                    {
-                        chainThree.GetComponent<ChainFalling>().CallThisFromButton(chain);
-                    }
-                    //chainOne.GetComponent<ChainFalling>().CallThisFromButton();
-                    //KeyElement.OnKeyPressed();
-                    //return;
-                }
-            }
-            else
-            {
-                Color tempColor = damages_rend.material.color;
-                tempColor.a = 0f;
-                damages_rend.material.color = tempColor;
-                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStop("use");
-            }
-
-        }
+    private void ShowChainDamageSphere(GameObject Chain) {
+        Color CurrentColor = Chain.transform.GetChild(1).GetComponent<Renderer>().material.color;
+        CurrentColor.a = .42f;
+        Chain.transform.GetChild(1).GetComponent<Renderer>().material.color = CurrentColor;
     }
+
+    private void HideChainDamageSphere(GameObject Chain) {
+        Color CurrentColor = Chain.transform.GetChild(1).GetComponent<Renderer>().material.color;
+        CurrentColor.a = .0f;
+        Chain.transform.GetChild(1).GetComponent<Renderer>().material.color = CurrentColor;
+    }
+
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
@@ -110,5 +78,18 @@ public class DetectDamaged : MonoBehaviour
             angleInDegrees += transform.eulerAngles.y; 
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    private float GetTargetGameObjectVisibility(Transform Target) {
+        Vector3 dirFromAtoB = (transform.position - Target.position).normalized;
+        return Vector3.Dot(dirFromAtoB, transform.forward);
+    }
+
+    private void FreeYAxis() {
+        mousePanel.ShowArrow("up");
+        mousePanel.ShowArrow("down");
+        GetComponent<Movement>().AllowCameraX = true;
+        mousePanel.IndicateArrow("up");
+        mousePanel.IndicateArrow("down");
     }
 }

@@ -4286,17 +4286,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b554a0c84637c6847ae35fa3d3ce179c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagesMask:
-    serializedVersion: 2
-    m_Bits: 256
   viewRadius: 2.07
   viewAngle: 21
-  dmg_test: {fileID: 1150244267}
   keyboardPanel: {fileID: 1851164351}
-  mousePanel: {fileID: 1928326719}
-  chainOne: {fileID: 1458964938}
-  chainTwo: {fileID: 107148330}
-  chainThree: {fileID: 1563575353}
+  mousePanel: {fileID: 1928326721}
+  chains:
+  - {fileID: 1458964938}
+  - {fileID: 107148330}
+  - {fileID: 1563575353}
   visibleDmgs: []
 --- !u!114 &333074524
 MonoBehaviour:
@@ -28497,12 +28494,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274eda99c510a1f44a1db8802f60a5bb, type: 3}
---- !u!1 &1928326719 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6510786214096753396, guid: 7772c89dc574381669f509e7dd3daa65,
+--- !u!114 &1928326721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6510786214096753392, guid: 7772c89dc574381669f509e7dd3daa65,
     type: 3}
   m_PrefabInstance: {fileID: 99994958}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f40bb4c42da39b0397b8bf19713b3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1932640578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4136082098060894, guid: 99e74361ca7e9a34da345c7e41827e06,

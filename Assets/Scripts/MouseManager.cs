@@ -24,10 +24,10 @@ public class MouseManager : MonoBehaviour
 
     void Start()
     {
-        // HideArrow("up");
-        // HideArrow("right");
-        // HideArrow("down");
-        // HideArrow("left");
+        HideArrow("up");
+        HideArrow("right");
+        HideArrow("down");
+        HideArrow("left");
     }
 
     // Update is called once per frame
@@ -94,24 +94,24 @@ public class MouseManager : MonoBehaviour
     }
 
     public void IndicateArrow(string ArrowDirection) {
-        StartCoroutine(IndicateCoroutine(GetArrow(ArrowDirection), 2f));
+        StartCoroutine(IndicateCoroutine(GetArrow(ArrowDirection), 3f));
     }
 
     public Coroutine UseArrow(string ArrowDirection) {
-        return StartCoroutine(ArrowUseCoroutine(GetArrow(ArrowDirection), 2f));
+        return StartCoroutine(ArrowUseCoroutine(GetArrow(ArrowDirection)));
     }
 
     IEnumerator IndicateCoroutine(Image Arrow, float TimeSeconds) {
         var endTime=Time.time + TimeSeconds;
         while(Time.time < endTime) {
-            Arrow.color = new Color(1f, 0f, 0f);
+            Arrow.color = new Color(0f, .53f, 1f);
             yield return new WaitForSeconds(0.2f);
             Arrow.color = new Color(0f, 0f, 0f);
             yield return new WaitForSeconds(0.2f);
         }
     }
 
-    IEnumerator ArrowUseCoroutine(Image Arrow, float TimeSeconds) {
+    IEnumerator ArrowUseCoroutine(Image Arrow) {
         Arrow.color = new Color(0f, 1f, 0f);
         yield return new WaitForSeconds(.5f);
         Arrow.color = new Color(0f, 0f, 0f);

@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
 
         if (AllowCameraY) {
             float inputY = Input.GetAxis("Mouse X") * SensY ;
-            inputY = transform.localEulerAngles.y - inputY;
+            inputY = transform.localEulerAngles.y + inputY;
 
             transform.localEulerAngles = new Vector3(0,inputY,0);
         }

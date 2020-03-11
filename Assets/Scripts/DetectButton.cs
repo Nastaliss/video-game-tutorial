@@ -17,6 +17,10 @@ public class DetectButton : MonoBehaviour
     public GameObject buttonOne;
     public GameObject buttonTwo;
 
+    public GameObject chainOne;
+    public GameObject chainTwo;
+    public GameObject chainThree;
+
     public List<Transform> visibleButtons = new List<Transform>();
 
     Camera viewCamera;
@@ -44,54 +48,61 @@ public class DetectButton : MonoBehaviour
     {
         Collider[] buttonsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, buttonMask);
 
-        for (int i = 0; i < buttonsInViewRadius.Length; i++)
+        if ((chainOne == null) && (chainTwo == null) && (chainThree == null))
         {
-
-            visibleButtons.Clear();
-
-            Transform button_transf = buttonsInViewRadius[i].transform;
-            Renderer button_rend = button_transf.GetComponent<Renderer>();
-
-
-            Vector3 dirToDamages = (button_transf.position - transform.position).normalized;
-
-            if (Vector3.Angle(transform.forward, dirToDamages) < viewAngle / 2)
+            Debug.Log("YA PLUS DE CHAINE");
+            for (int i = 0; i < buttonsInViewRadius.Length; i++)
             {
-                visibleButtons.Add(button_transf);
+                Debug.Log("JSUIS DANS LE FOR");
+                visibleButtons.Clear();
 
-                //CHANGE BUTTON COLOR HERE
-                Color tempColor = button_rend.material.color;
-                tempColor.a = 0.42f;
-                button_rend.material.color = tempColor;
+                Transform button_transf = buttonsInViewRadius[i].transform;
+                Renderer button_rend = button_transf.GetComponent<Renderer>();
 
-                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStart("use");
 
-                if (Input.GetKey(KeyCode.E))
+                Vector3 dirToDamages = (button_transf.position - transform.position).normalized;
+
+                if (Vector3.Angle(transform.forward, dirToDamages) < viewAngle / 2)
                 {
-                    GameObject button = button_transf.parent.gameObject;
-                    if (button.CompareTag("ButtonOne"))
-                    {
-                        buttonOne.GetComponent<ChainFalling>().CallThisFromButton(button);
-                    }
+                    Debug.Log("IF DANS L ANGLE");
+                    visibleButtons.Add(button_transf);
 
-                    if (button.CompareTag("ChainTwo"))
-                    {
-                        Debug.Log("I AM IN THE IF CHAIN TWO");
-                        buttonTwo.GetComponent<ChainFalling>().CallThisFromButton(button);
-                    }
+                    //CHANGE BUTTON COLOR HERE
+                    button_rend.material.color = Color.white;
+                    //Color tempColor = button_rend.material.color;
+                    //tempColor.a = 0.42f;
+                    //button_rend.material.color = tempColor;
 
-                   
+                    keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStart("use");
+
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        GameObject button = button_transf.parent.gameObject;
+                        if (button.CompareTag("ButtonOne"))
+                        {
+                            buttonOne.GetComponent<ButtonPushed>().CallThisFromButton(button);
+                        }
+
+                        if (button.CompareTag("ChainTwo"))
+                        {
+                            Debug.Log("I AM IN THE IF CHAIN TWO");
+                            buttonTwo.GetComponent<ChainFalling>().CallThisFromButton(button);
+                        }
+
+
+                    }
                 }
-            }
-            else
-            {
-                Color tempColor = button_rend.material.color;
-                tempColor.a = 0f;
-                button_rend.material.color = tempColor;
-                keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStop("use");
-            }
+                else
+                {
+                    Color tempColor = button_rend.material.color;
+                    tempColor.a = 0f;
+                    button_rend.material.color = tempColor;
+                    keyboardPanel.GetComponent<KeyBoardManager>().IndicateKeyStop("use");
+                }
 
+            }
         }
+            
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)

@@ -24,10 +24,10 @@ public class MouseManager : MonoBehaviour
 
     void Start()
     {
-        HideArrow("up");
-        HideArrow("right");
-        HideArrow("down");
-        HideArrow("left");
+        // HideArrow("up");
+        // HideArrow("right");
+        // HideArrow("down");
+        // HideArrow("left");
     }
 
     // Update is called once per frame

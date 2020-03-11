@@ -19,8 +19,8 @@ public class DetectDamaged : MonoBehaviour
     public List<Transform> visibleDmgs = new List<Transform>(); 
 
     void Start() {
-        mousePanel.ShowArrow("left");
-        mousePanel.ShowArrow("right");
+        mousePanel.HideArrow("down");
+        mousePanel.HideArrow("up");
 
         mousePanel.IndicateArrow("left");
         mousePanel.IndicateArrow("right");

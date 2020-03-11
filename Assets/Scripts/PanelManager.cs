@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PanelManager : MonoBehaviour
 {
@@ -77,6 +78,11 @@ public class PanelManager : MonoBehaviour
      #else
          Application.Quit();
      #endif
+    }
+
+    public void StartLvl1(){
+        //start lvl1 -> scene
+         SceneManager.LoadScene("MainScene");
     }
 
     // Start is called before the first frame update

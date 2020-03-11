@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 4144351052157527427, guid: 2ab410cd81ae87349ad0114480f96b1d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnParametersWelcome
+      value: ButtonQuit
       objectReference: {fileID: 0}
     - target: {fileID: 4144351052157527427, guid: 2ab410cd81ae87349ad0114480f96b1d,
         type: 3}
@@ -5160,12 +5160,12 @@ PrefabInstance:
     - target: {fileID: 4144351052157527427, guid: 2ab410cd81ae87349ad0114480f96b1d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: StartLvl1
       objectReference: {fileID: 0}
     - target: {fileID: 4144351052157527427, guid: 2ab410cd81ae87349ad0114480f96b1d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4144351052157527427, guid: 2ab410cd81ae87349ad0114480f96b1d,
         type: 3}
@@ -5176,7 +5176,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 863179224}
+      objectReference: {fileID: 863179226}
     - target: {fileID: 4144351052157527427, guid: 2ab410cd81ae87349ad0114480f96b1d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
